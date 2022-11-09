@@ -27,5 +27,10 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "files.associations": {
+    "intctrl_cfg.h": "c",
+    "compiler.h": "c",
+    "intctrl.h": "c"
+  }
 }

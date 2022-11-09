@@ -22,18 +22,26 @@
  *********************************************************************************************************************/
 
 /*  NULL_PTR is a Void Pointer to Zero*/
-#define NULL_PTR                ((void *)0)
+#define NULL_PTR                                ((void *)0)
 
 #ifndef __WEAK
-    #define __WEAK              __attribute__((weak))
+    #define __WEAK                              __attribute__((weak))
 #endif
 
 #ifndef __FORCEINLINE
-    #define __FORCEINLINE       __attribute__((always_inline))
+    #define __FORCEINLINE                       __attribute__((always_inline)) inline
+#endif
+
+#ifndef   __STATIC_FORCEINLINE                 
+  #define __STATIC_FORCEINLINE                  __attribute__((always_inline)) static __inline
 #endif
 
 #ifndef __INLINE
-    #define _INLINE             inline
+    #define __INLINE                            inline
+#endif
+
+#ifndef   __ASM
+  #define __ASM                                 __asm
 #endif
 
 /**********************************************************************************************************************

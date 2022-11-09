@@ -1,36 +1,31 @@
 /**
- * @file Std_Types.h
+ * @file IntCtrl_Cfg.h
  * @author Ahmed Taha (ahmed.m.taha01@gmail.com)
- * @brief Contains Standard Types
+ * @brief The File Contains The Pre-Processor Configurations of the IntCtrl
  * @version 0.1
- * @date 2022-11-08
+ * @date 2022-11-09
  * 
  * @copyright Copyright (c) 2022
  * 
  */
-
-#ifndef __STD_TYPES_H__
-#define __STD_TYPES_H__
+#ifndef __INTCTRL_CFG_H__
+#define __INTCTRL_CFG_H__
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-
-#include "Platform_Types.h"
-#include "Compiler.h"
-#include "Mcu_Hw.h"
-
+#include "../../Common/Std_Types.h"
+#include "../../Mcal/IntCtrl/IntCtrl_Types.h"
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define WORD_BIT_LENTH  (32)
+#define INTCTRL_FAULTS_STATUS                               (ENABLE)
+#define INTCTRL_INTERRUPTS_STATUS                           (ENABLE)
 
-#define STD_HIGH        (1U)    /* Physical Voltage Level 5V .. 3.3V */
-#define STD_LOW         (0U)    /* Physical Voltage Level 0V */
+#define INTCTRL_NUM_OF_ENABLED_IRQs                         (1u)
 
-#define STD_ON          (1U)
-#define STD_OFF         (0U)
+#define INTCTRL_INTERRUPT_PRIORITY_LEVEL                    (INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_FULL_S_NONE)
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -41,11 +36,6 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
-typedef enum
-{
-    E_OK = 0,
-    E_NOT_OK
-}Std_ReturnType;
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
@@ -57,8 +47,8 @@ typedef enum
  *********************************************************************************************************************/
 
  
-#endif  /* __STD_TYPES_H__ */
+#endif  /* __INTCTRL_CFG_H__ */
 
 /**********************************************************************************************************************
- *  END OF FILE: Std_Types.h
+ *  END OF FILE: IntCtrl_Cfg.h
  *********************************************************************************************************************/
