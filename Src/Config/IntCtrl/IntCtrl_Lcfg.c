@@ -29,11 +29,15 @@
  *********************************************************************************************************************/
 
 #if (INTCTRL_NUM_OF_ENABLED_IRQs > 0)
-const IntCtrl_IrqConfig_t IrqConfigTable[INTCTRL_NUM_OF_ENABLED_IRQs] = 
-{
-    {SysTick_IQRn, 1, 1, INTCTRL_IRQ_EABLE}
-};
+    
+    const IntCtrl_IrqConfig_t IrqConfigTable[INTCTRL_NUM_OF_ENABLED_IRQs] = 
+    {
+        {SysTick_IQRn, 1, 1},
+        {GPIOA_IQRn, 1, 1}
+    };
+
 #endif
+
 /**********************************************************************************************************************
  *  END OF FILE: IntCtrl_Lcfg.c
  *********************************************************************************************************************/

@@ -1,31 +1,35 @@
 /**
- * @file IntCtrl_Cfg.h
- * @author Ahmed Taha (ahmed.m.taha01@gmail.com)
- * @brief The File Contains The Pre-Processor Configurations of the IntCtrl
+ * @file Mcu_Cfg.h
+ * @author Ahmed Taha (ahmed_m_taha01@gmail.com)
+ * @brief 
  * @version 0.1
- * @date 2022-11-09
+ * @date 2022-11-14
  * 
  * @copyright Copyright (c) 2022
  * 
  */
-#ifndef __INTCTRL_CFG_H__
-#define __INTCTRL_CFG_H__
+
+#ifndef __MCU_CFG_H__
+#define __MCU_CFG_H__
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
 #include "../../Common/Std_Types.h"
-#include "../../Mcal/IntCtrl/IntCtrl_Types.h"
+
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define INTCTRL_FAULTS_STATUS                               (ENABLE)
-#define INTCTRL_INTERRUPTS_STATUS                           (ENABLE)
+#define MCU_SW_RESET                    (ENABLE)
 
-#define INTCTRL_NUM_OF_ENABLED_IRQs                         (1u)
+#define MCU_OSCILLATOR_SRC              (MOSC)
+#define MCU_CLK_MOSC_XTAL_VALUE         (_16_MHz_OSC)
+#define MCU_PLL_BYBASS                  (ENABLE) // checl on the Bybass befor disable it
+#define MCU_PLL_USE_FREQ_DIV_2          (ENABLE) // DIV400
+#define MCU_SYSDIV_VAL                  (SYSCTL_SYSDIV_1)
+#define MCU_USE_SYSDIV                  (ENABLE)
 
-#define INTCTRL_INTERRUPT_PRIORITY_LEVEL                    (INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_FULL_S_NONE)
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -46,10 +50,9 @@
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
 
- 
-#endif  /* __INTCTRL_CFG_H__ */
+
+#endif /* __MCU_CFG_H__ */
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCtrl_Cfg.h
+ *  END OF FILE: Mcu_Cfg.h
  *********************************************************************************************************************/
- 

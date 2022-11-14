@@ -1,31 +1,27 @@
 /**
- * @file IntCtrl_Cfg.h
+ * @file Mcu.h
  * @author Ahmed Taha (ahmed.m.taha01@gmail.com)
- * @brief The File Contains The Pre-Processor Configurations of the IntCtrl
+ * @brief Mcu System Control Data Types
  * @version 0.1
- * @date 2022-11-09
+ * @date 2022-11-13
  * 
  * @copyright Copyright (c) 2022
  * 
  */
-#ifndef __INTCTRL_CFG_H__
-#define __INTCTRL_CFG_H__
+
+#ifndef __MCU_H__
+#define __MCU_H__
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../Common/Std_Types.h"
-#include "../../Mcal/IntCtrl/IntCtrl_Types.h"
+#include "../../Config/Mcu/Mcu_Cfg.h"
+#include "Mcu_Types.h"
+
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-
-#define INTCTRL_FAULTS_STATUS                               (ENABLE)
-#define INTCTRL_INTERRUPTS_STATUS                           (ENABLE)
-
-#define INTCTRL_NUM_OF_ENABLED_IRQs                         (1u)
-
-#define INTCTRL_INTERRUPT_PRIORITY_LEVEL                    (INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_FULL_S_NONE)
+#define AIRCR_SYSRESREQ_POS         (2U)
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -45,11 +41,17 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
+void Mcu_Init(const Mcu_ConfigType * ConfigPtr);
+Mcu_RawResetType Mcu_GetResetRawValue(void);
+#if (MCU_SW_RESET == ENABLE)
+    void Mcu_PerformReset(void);
+#endif /* (MCU_SW_RESET == ENABLE) */
+Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting);
+Std_ReturnType Mcu_DistributePllClock(void);
+Mcu_PllStatusType Mcu_GetPllStatus(void);
 
- 
-#endif  /* __INTCTRL_CFG_H__ */
+#endif /* __MCU_H__ */
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCtrl_Cfg.h
+ *  END OF FILE: Mcu.h
  *********************************************************************************************************************/
- 

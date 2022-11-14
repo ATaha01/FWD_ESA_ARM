@@ -24,7 +24,7 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define WORD_BIT_LENTH  (32)
+#define WORD_BIT_LENTH  (32U)
 
 #define STD_HIGH        (1U)    /* Physical Voltage Level 5V .. 3.3V */
 #define STD_LOW         (0U)    /* Physical Voltage Level 0V */
@@ -36,6 +36,12 @@
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
 
+#define SET_BIT(REG, BIT)                   ( ( REG ) |= ( 0x01U << ( BIT ) ) )
+#define CLR_BIT(REG, BIT)                   ( ( REG ) &= ~( 0x01U << ( BIT ) ) )
+#define TOGGLE_BIT(REG, BIT)                ( ( REG ) ^= ( 0x01U << ( BIT ) ) ) 
+#define WRITE_BIT(REG, BIT, VAL)            ( ( VAL ) ? SET_REG(REG, BIT) : CLR_BIT(REG, BIT) )
+#define WRITE_VAL(REG, OFFSET, VAL)         ( ( REG ) |= ( ( VAL ) << ( OFFSET ) ) )
+#define READ_BIT(REG, BIT)                  ( ( ( REG ) >> ( BIT ) ) & 0x01U)
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES

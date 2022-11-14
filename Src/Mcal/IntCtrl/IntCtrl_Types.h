@@ -21,8 +21,7 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define INTCTRL_PRI_OFSSET      (0x05u)
-#define APINT_KEY_VAL           (0x05FAu)
+
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -72,22 +71,17 @@ typedef enum
     TIM2B_16_32_Bits_IRQn       = 24,
     CMB0_IRQn                   = 25,
     CMB1_IRQn                   = 26,
-    SysControl_IRQn             = 28,
+    SysControl_IRQn             = 28
 
 }IntCtrl_InterruptType_t;
 
-typedef enum
-{
-    INTCTRL_IRQ_DISABLE = 0,
-    INTCTRL_IRQ_EABLE,
-}IntCtrl_IrqStatus_t;
 
 typedef struct
 {
     IntCtrl_InterruptType_t IRQx;
     uint8_t GroupPriority;
     uint8_t SubGroupPriority;
-    IntCtrl_IrqStatus_t IrqStatus;
+
 }IntCtrl_IrqConfig_t;
 
 typedef enum
@@ -95,7 +89,7 @@ typedef enum
     INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_FULL_S_NONE = 0,
     INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_4_S_2 = 5,
     INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_2_S_4 = 6,
-    INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_NONE_S_FULL = 7,
+    INTCTRL_INTERRUPT_PRIORITY_LEVEL_G_NONE_S_FULL = 7
 }IntCtrl_InterruptPriorityLevel_t;
 
 /**********************************************************************************************************************
