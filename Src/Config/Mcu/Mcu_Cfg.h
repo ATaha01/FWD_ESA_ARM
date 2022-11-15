@@ -26,9 +26,10 @@
 #define MCU_OSCILLATOR_SRC              (MOSC)
 #define MCU_CLK_MOSC_XTAL_VALUE         (_16_MHz_OSC)
 #define MCU_PLL_BYBASS                  (ENABLE) // checl on the Bybass befor disable it
-#define MCU_PLL_USE_FREQ_DIV_2          (ENABLE) // DIV400
-#define MCU_SYSDIV_VAL                  (SYSCTL_SYSDIV_1)
+#define MCU_PLL_OUT_CONFIGURATION       (MCU_PLL_CONFIG_OUT_200MHz)
+#define MCU_PLL_SYSDIV2_LSB             (0U) /* optional if you Selected the PLL_CONFIG_400MHz So it will act as the LSB of the SYSDIV2 Field*/
 #define MCU_USE_SYSDIV                  (ENABLE)
+#define MCU_SYSDIV_VAL                  (SYSCTL_SYSDIV_1) // If > 16 Writee your Own Val From the datasheet
 
 
 /**********************************************************************************************************************

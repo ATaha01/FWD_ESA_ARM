@@ -31,6 +31,8 @@
   "files.associations": {
     "intctrl_cfg.h": "c",
     "compiler.h": "c",
-    "intctrl.h": "c"
+    "intctrl.h": "c",
+    "mcu.h": "c",
+    "mcu_types.h": "c"
   }
 }

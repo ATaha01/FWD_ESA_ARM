@@ -48,13 +48,19 @@ typedef enum
     MCU_PLL_STATUS_POWERED_AND_LOCKED
 }Mcu_PllStatusType;
 
+typedef enum
+{
+    MCU_PLL_CONFIG_OUT_200MHz = 0,
+    MCU_PLL_CONFIG_OUT_400MHz
+}Mcu_PllConfig;
 
 typedef enum
 {
     MOSC = 0,
     PIOSC,
     PIOSC_DIV_BY_4,
-    LFIOSC
+    LFIOSC,
+    _32p768kHz_EXT_OSC = 7
 }Mcu_ClkOscillatorSrc;
 
 typedef enum
@@ -101,23 +107,16 @@ typedef enum
     SYSCTL_SYSDIV_14,
     SYSCTL_SYSDIV_15,
     SYSCTL_SYSDIV_16,
-    /* For RCC2 */
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-    SYSCTL_SYSDIV_16,
-
+    SYSCTL_SYSDIV_GT_16
 
 }Mcu_SysCtlSysDiv;
+
+typedef struct
+{
+    Mcu_ClkOscillatorSrc SysClkSrc;
+    Mcu_ClkXtalValue     XtalVal;
+    Mcu_SysCtlSysDiv     SysDivVal;
+}Mcu_ClockType;
 
 
 /**********************************************************************************************************************
@@ -125,6 +124,8 @@ typedef enum
  *********************************************************************************************************************/
 
  
+
+
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/

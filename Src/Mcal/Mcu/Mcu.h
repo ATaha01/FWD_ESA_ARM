@@ -41,13 +41,12 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-void Mcu_Init(const Mcu_ConfigType * ConfigPtr);
+void Mcu_Init(void);
 Mcu_RawResetType Mcu_GetResetRawValue(void);
 #if (MCU_SW_RESET == ENABLE)
     void Mcu_PerformReset(void);
 #endif /* (MCU_SW_RESET == ENABLE) */
-Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting);
-Std_ReturnType Mcu_DistributePllClock(void);
+Std_ReturnType Mcu_InitClock(Mcu_ClockType * ClockSetting);
 Mcu_PllStatusType Mcu_GetPllStatus(void);
 
 #endif /* __MCU_H__ */
