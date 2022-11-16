@@ -298,20 +298,90 @@ typedef struct {                                        /*!< SYSCTL Structure   
 } SYSCTL_Type;
 
 
+/* ================================================================================ */
+/* ================                     GPIOx                      ================ */
+/* ================================================================================ */
+
+typedef struct
+{
+    volatile uint32_t DATA_MASK[256];
+    volatile uint32_t DATA;
+    volatile uint32_t DIR;
+    volatile uint32_t IS;
+    volatile uint32_t  IBE;                               
+    volatile uint32_t  IEV;                               
+    volatile uint32_t  IM;                                
+    volatile uint32_t  RIS;                               
+    volatile uint32_t  MIS;                               
+    volatile uint32_t  ICR;                               
+    volatile uint32_t  AFSEL;                             
+    volatile const uint32_t  RESERVED1[55];
+    volatile uint32_t  DR2R;                              
+    volatile uint32_t  DR4R;                              
+    volatile uint32_t  DR8R;                              
+    volatile uint32_t  ODR;                               
+    volatile uint32_t  PUR;                               
+    volatile uint32_t  PDR;                               
+    volatile uint32_t  SLR;                               
+    volatile uint32_t  DEN;                               
+    volatile uint32_t  LOCK;                              
+    volatile uint32_t  CR;                                
+    volatile uint32_t  AMSEL;                             
+    volatile uint32_t  PCTL;                              
+    volatile uint32_t  ADCCTL;                            
+    volatile uint32_t  DMACTL;                            
+}GPIOx_Type;
+
+
 /**********************************************************************************************************************
  * Base Addresses Definition
  *********************************************************************************************************************/
 #define CORE_CM4_PERIPHERNAL_BASE_ADDRESS                       (uint32_t)(0xE000E000)
+#define TM4C123G_PERIPHERNAL_BASE_ADDRESS                       (uint32_t)(0x40000000)
 
 #define SYSTIMER_BASE_ADDR                                      (uint32_t)(CORE_CM4_PERIPHERNAL_BASE_ADDRESS + 0x0010UL)
 #define NVIC_BASE_ADDR                                          (uint32_t)(CORE_CM4_PERIPHERNAL_BASE_ADDRESS + 0x0100UL)
 #define SCB_BASE_ADDR                                           (uint32_t)(CORE_CM4_PERIPHERNAL_BASE_ADDRESS + 0x0D00UL)
 #define SYSCTL_BASE_ADDR                                        (uint32_t)(0x400FE000UL                                )
 
+#define GPIOA_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x4000  )
+#define GPIOA_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x58000 )
+
+#define GPIOB_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x5000  )
+#define GPIOB_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x59000 )
+
+#define GPIOC_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x6000  )
+#define GPIOC_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x5A000 )
+
+#define GPIOD_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x7000  )
+#define GPIOD_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x5B000 )
+
+#define GPIOE_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x24000 )
+#define GPIOE_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x5C000 )
+
+#define GPIOF_APB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x25000 )
+#define GPIOF_AHB_BASE_ADDR                                     (uint32_t)(TM4C123G_PERIPHERNAL_BASE_ADDRESS + 0x5D000 )
+
+
 #define SysTick                                                 ( (SysTick_Type  *) SYSTIMER_BASE_ADDR )
 #define NVIC                                                    ( (NVIC_Type     *) NVIC_BASE_ADDR     )
 #define SCB                                                     ( (SCB_Type      *) SCB_BASE_ADDR      )
 #define SYSCTL                                                  ( (SYSCTL_Type   *) SYSCTL_BASE_ADDR   )
+
+#define GET_GPIO(PIN_TYPE)                                      ( ( GPIOx_Type   *) ( GPIOA_APB_BASE_ADDR +  ( ( PIN_TYPE ) *  0x1000) + 0x4000 + ( ( PIN_TYPE > 3 )? ( 0x1C000 ):( 0x00 ) ) ) )
+#define GPIOA                                                   ( ( GPIOx_Type   *) GPIOA_APB_BASE_ADDR)
+#define GPIOB                                                   ( ( GPIOx_Type   *) GPIOB_APB_BASE_ADDR)
+#define GPIOC                                                   ( ( GPIOx_Type   *) GPIOC_APB_BASE_ADDR)
+#define GPIOD                                                   ( ( GPIOx_Type   *) GPIOD_APB_BASE_ADDR)
+#define GPIOE                                                   ( ( GPIOx_Type   *) GPIOE_APB_BASE_ADDR)
+#define GPIOF                                                   ( ( GPIOx_Type   *) GPIOF_APB_BASE_ADDR)
+
+#define GPIOA_AHB                                               ( ( GPIOx_Type   *) GPIOA_AHB_BASE_ADDR)
+#define GPIOB_AHB                                               ( ( GPIOx_Type   *) GPIOB_AHB_BASE_ADDR)
+#define GPIOC_AHB                                               ( ( GPIOx_Type   *) GPIOC_AHB_BASE_ADDR)
+#define GPIOD_AHB                                               ( ( GPIOx_Type   *) GPIOD_AHB_BASE_ADDR)
+#define GPIOE_AHB                                               ( ( GPIOx_Type   *) GPIOE_AHB_BASE_ADDR)
+#define GPIOF_AHB                                               ( ( GPIOx_Type   *) GPIOF_AHB_BASE_ADDR)
 
 /*******************************************************************************
  *                Core Peripheral Special APIs

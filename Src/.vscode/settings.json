@@ -33,6 +33,10 @@
     "compiler.h": "c",
     "intctrl.h": "c",
     "mcu.h": "c",
-    "mcu_types.h": "c"
+    "mcu_types.h": "c",
+    "dio.h": "c",
+    "dio_types.h": "c",
+    "std_types.h": "c",
+    "mcu_hw.h": "c"
   }
 }
