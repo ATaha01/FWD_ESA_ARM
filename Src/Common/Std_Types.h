@@ -39,7 +39,7 @@
 #define SET_BIT(REG, BIT)                   ( ( REG ) |= ( 0x01U << ( BIT ) ) )
 #define CLR_BIT(REG, BIT)                   ( ( REG ) &= ~( 0x01U << ( BIT ) ) )
 #define TOGGLE_BIT(REG, BIT)                ( ( REG ) ^= ( 0x01U << ( BIT ) ) ) 
-#define WRITE_BIT(REG, BIT, VAL)            ( ( VAL ) ? SET_REG(REG, BIT) : CLR_BIT(REG, BIT) )
+#define WRITE_BIT(REG, BIT, VAL)            ( ( VAL ) ? SET_BIT(REG, BIT) : CLR_BIT(REG, BIT) )
 #define WRITE_VAL(REG, OFFSET, VAL)         ( ( REG ) |= ( ( VAL ) << ( OFFSET ) ) )
 #define READ_BIT(REG, BIT)                  ( ( ( REG ) >> ( BIT ) ) & 0x01U)
 
