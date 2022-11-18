@@ -37,6 +37,7 @@
     "dio.h": "c",
     "dio_types.h": "c",
     "std_types.h": "c",
-    "mcu_hw.h": "c"
+    "mcu_hw.h": "c",
+    "systick.h": "c"
   }
 }

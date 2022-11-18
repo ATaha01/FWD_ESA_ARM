@@ -1,58 +1,79 @@
 /**
- * @file Mcu.h
+ * @file Systick.c
  * @author Ahmed Taha (ahmed.m.taha01@gmail.com)
- * @brief Mcu System Control Data Types
+ * @brief 
  * @version 0.1
- * @date 2022-11-13
+ * @date 2022-11-18
  * 
  * @copyright Copyright (c) 2022
  * 
  */
 
-#ifndef __MCU_H__
-#define __MCU_H__
-
 /**********************************************************************************************************************
- * INCLUDES
+ *  INCLUDES
  *********************************************************************************************************************/
-#include "../../Config/Mcu/Mcu_Cfg.h"
-#include "Mcu_Types.h"
+#include "SysTick.h"
+/**********************************************************************************************************************
+*  LOCAL MACROS CONSTANT\FUNCTION
+*********************************************************************************************************************/
 
 /**********************************************************************************************************************
- *  GLOBAL CONSTANT MACROS
- *********************************************************************************************************************/
-#define AIRCR_SYSRESREQ_POS         (2U)
-
-/**********************************************************************************************************************
- *  GLOBAL FUNCTION MACROS
+ *  LOCAL DATA 
  *********************************************************************************************************************/
 
-
 /**********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
+ *  GLOBAL DATA
  *********************************************************************************************************************/
 
-
 /**********************************************************************************************************************
- *  GLOBAL DATA PROTOTYPES
+ *  LOCAL Functions Declaration
  *********************************************************************************************************************/
 
- 
 /**********************************************************************************************************************
- *  GLOBAL FUNCTION PROTOTYPES
+ *  LOCAL Functions Definitions
  *********************************************************************************************************************/
-void Mcu_Init(void);
-Mcu_RawResetType Mcu_GetResetRawValue(void);
-#if (MCU_SW_RESET == ENABLE)
-    void Mcu_PerformReset(void);
-#endif /* (MCU_SW_RESET == ENABLE) */
-Std_ReturnType Mcu_InitClock(Mcu_ClockType * ClockSetting);
-Mcu_PllStatusType Mcu_GetPllStatus(void);
-void Mcu_UpdateSysClock(void);
-uint32_t Mcu_GetSysClock(void);
-
-#endif /* __MCU_H__ */
 
 /**********************************************************************************************************************
- *  END OF FILE: Mcu.h
+ *  GLOBAL Functions Definitions
+ *********************************************************************************************************************/
+void SysTic_Init(SysTick_Setting * SysTicCongig)
+{
+    if(SysTicCongig == NULL_PTR)
+        return;
+
+    SysTick->LOAD = SysTicCongig->InitVal;
+
+    if(SYSTICK_ClkSrc_PIOSC_SYSTEM_CLOCK == SysTicCongig->ClkSrc)
+        SET_BIT((SysTick->CTRL), 2);
+    else
+        CLR_BIT((SysTick->CTRL), 2);
+
+    if(SYSTICK_INTERRUPT_ENABLE == SysTicCongig->ClkSrc)
+        SET_BIT((SysTick->CTRL), 1);
+    else
+        CLR_BIT((SysTick->CTRL), 1);
+
+    if(SYSTICK_START == SysTicCongig->InitStatus)
+        SET_BIT((SysTick->CTRL), 0);
+    else
+        CLR_BIT((SysTick->CTRL), 0);
+}
+
+
+void SysTick_UpdateLoadValue(uint32_t SysTick_LoadValue)
+{
+    SysTick->LOAD = SysTick_LoadValue;
+}
+
+void SysTick_EditStatus(SysTick_Status Status)
+{
+    if(SYSTICK_START == Status)
+        SET_BIT((SysTick->CTRL), 0);
+    else
+        CLR_BIT((SysTick->CTRL), 0);
+}
+
+
+/**********************************************************************************************************************
+ *  END OF FILE: SysTick.c
  *********************************************************************************************************************/

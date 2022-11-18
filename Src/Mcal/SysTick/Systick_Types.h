@@ -1,29 +1,27 @@
 /**
- * @file Mcu.h
+ * @file Systick_Types.h
  * @author Ahmed Taha (ahmed.m.taha01@gmail.com)
- * @brief Mcu System Control Data Types
+ * @brief 
  * @version 0.1
- * @date 2022-11-13
+ * @date 2022-11-18
  * 
  * @copyright Copyright (c) 2022
  * 
  */
 
-#ifndef __MCU_H__
-#define __MCU_H__
-
+#ifndef __SYSTICK_TYPES_H__
+#define __SYSTICK_TYPES_H__
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../Config/Mcu/Mcu_Cfg.h"
-#include "Mcu_Types.h"
+#include "../../Common/Std_Types.h"
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define AIRCR_SYSRESREQ_POS         (2U)
 
-/**********************************************************************************************************************
+
+/*******************************************s***************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
 
@@ -31,6 +29,33 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
+
+typedef enum
+{
+    SYSTICK_STOP = 0,
+    SYSTICK_START
+}SysTick_Status;
+
+typedef enum
+{
+    SYSTICK_ClkSrc_PIOSC_DIV_4 = 0,
+    SYSTICK_ClkSrc_PIOSC_SYSTEM_CLOCK
+}SysTick_ClkSrc;
+
+typedef enum
+{
+    SYSTICK_INTERRUPT_DISABLE = 0,
+    SYSTICK_INTERRUPT_ENABLE
+}SysTick_InterruptStatus;
+
+typedef struct
+{
+    uint32_t InitVal : 24;
+    SysTick_ClkSrc ClkSrc : 1;
+    SysTick_InterruptStatus IntStatus : 1;
+    SysTick_Status InitStatus : 1;
+    
+}SysTick_Setting;
 
 
 /**********************************************************************************************************************
@@ -41,18 +66,9 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-void Mcu_Init(void);
-Mcu_RawResetType Mcu_GetResetRawValue(void);
-#if (MCU_SW_RESET == ENABLE)
-    void Mcu_PerformReset(void);
-#endif /* (MCU_SW_RESET == ENABLE) */
-Std_ReturnType Mcu_InitClock(Mcu_ClockType * ClockSetting);
-Mcu_PllStatusType Mcu_GetPllStatus(void);
-void Mcu_UpdateSysClock(void);
-uint32_t Mcu_GetSysClock(void);
 
-#endif /* __MCU_H__ */
+#endif /* __SYSTICK_TYPES_H__ */
 
 /**********************************************************************************************************************
- *  END OF FILE: Mcu.h
+ *  END OF FILE: SysTick.h
  *********************************************************************************************************************/

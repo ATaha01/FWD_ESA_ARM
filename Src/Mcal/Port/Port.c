@@ -17,7 +17,7 @@
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
-*********************************************************************************************************************/
+ *********************************************************************************************************************/
 #define PORT_ENABLE_CLK(PIN_TYPE)                           ( SET_BIT( ( SYSCTL->RCGCGPIO ), ( ( PIN_TYPE )) ) )
 
 
@@ -28,7 +28,9 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-
+#if (TOTAL_NUM_OF_USED_PINS > 0)
+    extern const Port_ConfigType Port_Config[TOTAL_NUM_OF_USED_PINS];
+#endif 
 
 /**********************************************************************************************************************
  *  LOCAL Functions Declaration
@@ -41,17 +43,17 @@
 /**********************************************************************************************************************
  *  GLOBAL Functions Definitions
  *********************************************************************************************************************/
-void Port_Init(const Port_ConfigType* ConfigPtr)
+void Port_Init(void)
 {
     for(uint8_t i = 0; i < TOTAL_NUM_OF_USED_PINS; ++i)
     {
-        uint8_t PortNum           = ConfigPtr[i].PinType / 8;
-        uint8_t PinNum            = ConfigPtr[i].PinType % 8;
-        uint8_t pinDir            = ConfigPtr[i].PinDir;
-        Port_PinModeType pinMode  = ConfigPtr[i].PinMode;
-        uint8_t OutputCurrentVal  = ConfigPtr[i].PinOutputCurrent;
-        uint8_t PinPad            = ConfigPtr[i].PinInternalAttach;
-        uint8_t PinInitValue      = ConfigPtr[i].PinLevelValue;
+        uint8_t PortNum           = Port_Config[i].PinType / 8;
+        uint8_t PinNum            = Port_Config[i].PinType % 8;
+        uint8_t pinDir            = Port_Config[i].PinDir;
+        Port_PinModeType pinMode  = Port_Config[i].PinMode;
+        uint8_t OutputCurrentVal  = Port_Config[i].PinOutputCurrent;
+        uint8_t PinPad            = Port_Config[i].PinInternalAttach;
+        uint8_t PinInitValue      = Port_Config[i].PinLevelValue;
         /* Enable The GPIO CLOCK */
         PORT_ENABLE_CLK(PortNum);
 
