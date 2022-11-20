@@ -36,7 +36,7 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-void SysTic_Init(SysTic_Setting * SysTicCongig);
+void SysTic_Init(SysTick_Setting * SysTicCongig);
 void SysTick_UpdateLoadValue(uint32_t SysTick_LoadValue);
 void SysTick_EditStatus(SysTick_Status Status);
 

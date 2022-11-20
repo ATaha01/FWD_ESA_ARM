@@ -39,7 +39,7 @@ typedef enum
 typedef enum
 {
     SYSTICK_ClkSrc_PIOSC_DIV_4 = 0,
-    SYSTICK_ClkSrc_PIOSC_SYSTEM_CLOCK
+    SYSTICK_ClkSrc_SYSTEM_CLOCK
 }SysTick_ClkSrc;
 
 typedef enum
